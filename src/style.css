@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@theme {
+  --text-xs: 0.25rem;
+  --text-xs--line-height: 0.35rem;
+
+  --text-sm: 0.35rem;
+  --text-sm--line-height: 0.45rem;
+
+  --text-base: 0.45rem;
+  --text-base--line-height: 0.55rem;
+
+  --text-lg: 0.55rem;
+  --text-lg--line-height: 0.65rem;
+
+  --text-xl: 0.65rem;
+  --text-xl--line-height: 0.75rem;
+
+  ----shadow-l-white: '-10px 0 10px white';
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
