@@ -14,7 +14,7 @@
         <div
           v-if="isOpen"
           v-bind="$attrs"
-          class="fixed z-50 w-screen bg-white bottom-0"
+          class="fixed z-50 w-screen bg-white bottom-0 dark:bg-zinc-800"
         >
           <slot></slot>
         </div>
