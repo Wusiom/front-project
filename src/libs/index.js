@@ -5,7 +5,6 @@ export default {
     const files = import.meta.glob('./*/index.vue')
     Object.keys(files).forEach(path => {
       const component = files[path]
-      console.log(path);
       const componentName = 'm-' + path.replace('./', '').split('/')[0]
       app.component(componentName, defineAsyncComponent(component))
     })

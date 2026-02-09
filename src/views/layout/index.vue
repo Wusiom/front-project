@@ -1,7 +1,9 @@
 <template>
   <div class="h-screen">
     <Header class="h-(--header-height)" />
-    <Main class="h-(--main-height)" />
+    <div class="h-(--main-height)">
+      <Main />
+    </div>
     <Floating />
   </div>
 </template>
