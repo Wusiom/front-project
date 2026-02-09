@@ -68,6 +68,10 @@ const props = defineProps({
   iconColor: {
     type: String
   },
+  // 图标 fill 的 Tailwind 类名，如 fill-zinc-900 dark:fill-zinc-200
+  iconClass: {
+    type: String
+  },
   type: {
     type: String,
     default: 'main',

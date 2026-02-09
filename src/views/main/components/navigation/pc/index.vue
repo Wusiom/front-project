@@ -18,8 +18,12 @@
         v-for="(item, index) in categoryStore.categoryList"
         :key="item.id"
         class="shrink-0 px-1.5 py-0 z-10 duration-200 last:mr-4 text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 text-base font-bold h-4 leading-4 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-900 rounded mr-1 mb-1"
-        @click="onItemClick(index)"
-        :class="[selectedCategory === index ? 'bg-zinc-200 text-zinc-900' : '']"
+        @click="onItemClick(item)"
+        :class="[
+          categoryStore.currentCategoryIndex === index
+            ? 'bg-zinc-200 text-zinc-900 dark:bg-zinc-900'
+            : ''
+        ]"
       >
         {{ item.name }}
       </li>
@@ -39,8 +43,8 @@ const triggerUnfold = () => {
 }
 // 选中状态
 const selectedCategory = ref(0)
-const onItemClick = (index) => {
-  selectedCategory.value = index
+const onItemClick = (item) => {
+  categoryStore.changeCurrentCategory(item)
 }
 </script>
 
