@@ -30,7 +30,7 @@ const pexelsList = ref([])
 
 let query = {
   page: 1,
-  size: 10
+  size: 15
 }
 
 const isLoading = ref(false)

@@ -2,10 +2,14 @@
   <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
     <div class="relative w-full rounded cursor-zoom-in group">
       <img
+        v-lazy
         :src="data.photo"
         alt="photo"
         class="w-full rounded bg-transparent"
-        :style="{ height: (width / data.photoWidth) * data.photoHeight + 'px' }"
+        :style="{
+          height: (width / data.photoWidth) * data.photoHeight + 'px',
+          backgroundColor: randomRGB()
+        }"
       />
       <!-- 遮罩层 -->
       <div
@@ -42,7 +46,7 @@
     </p>
     <!-- 作者 -->
     <div class="flex items-center mt-1 px-1">
-      <img :src="data.avatar" alt="" class="w-2 h-4 rounded-full" />
+      <img v-lazy :src="data.avatar" alt="" class="w-2 h-4 rounded-full" />
       <span class="text-xs text-zinc-900 dark:text-zinc-300 ml-1">{{
         data.author
       }}</span>
@@ -51,6 +55,7 @@
 </template>
 
 <script setup>
+import { randomRGB } from '@/utils/color'
 defineProps({
   data: {
     type: Object,
