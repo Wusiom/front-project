@@ -23,8 +23,10 @@
         :key="item.id"
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
         :ref="setItemRef"
-        @click="handleItemClick(index)"
-        :class="{ 'text-zinc-100': currentCategoryIndex === index }"
+        @click="handleItemClick(item)"
+        :class="{
+          'text-zinc-100': sessionStore.currentCategoryIndex === index
+        }"
       >
         {{ item.name }}
       </li>
@@ -39,6 +41,8 @@
 import { ref, computed, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
 import Menu from '@/views/main/components/menu/index.vue'
+import useSessionStore from '@/store/session'
+const sessionStore = useSessionStore()
 defineProps({
   data: {
     type: Array,
@@ -51,7 +55,6 @@ const sliderStyle = ref({
   transform: 'translateX(0px)'
 })
 // 选中的item下标
-const currentCategoryIndex = ref(0)
 // 获取所有的填充item
 let itemRefs = []
 const setItemRef = (el) => {
@@ -64,15 +67,15 @@ onBeforeUpdate(() => {
 })
 const ulTarget = ref(null)
 const { x: ulScrollleft } = useScroll(ulTarget)
-watch(currentCategoryIndex, (newVal) => {
+watch(sessionStore.currentCategoryIndex, (newVal) => {
   const { left, width } = itemRefs[newVal].getBoundingClientRect()
   sliderStyle.value.width = `${width}px`
   sliderStyle.value.transform = `translateX(${
     left + ulScrollleft.value - 10
   }px)`
 })
-const handleItemClick = (index) => {
-  currentCategoryIndex.value = index
+const handleItemClick = (item) => {
+  sessionStore.changeCurrentCategory(item)
   isPopupVisible.value = false
 }
 const isPopupVisible = ref(false)

@@ -5,7 +5,7 @@
     <div class="flex items-center">
       <img
         v-lazy
-        class="h-4 cursor-pointer mr-2"
+        class="h-4 cursor-pointer mr-2 guide-home"
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png
 "
         alt=""

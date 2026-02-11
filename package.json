@@ -11,7 +11,10 @@
   "dependencies": {
     "@vueuse/core": "^14.2.0",
     "axios": "^1.13.4",
+    "driver.js": "^1.4.0",
     "fast-glob": "^3.3.3",
+    "file-saver": "^2.0.5",
+    "gsap": "^3.14.2",
     "nvm": "^0.0.4",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",
@@ -22,6 +25,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-vue": "^6.0.1",
     "sass": "^1.97.3",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.1.18",
     "vite": "^7.2.4",
     "vite-plugin-svg-icons": "^2.0.1"

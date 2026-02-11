@@ -10,3 +10,5 @@ export default {
     })
   }
 }
+export { confirm } from './confirm'
+export { message } from './message'

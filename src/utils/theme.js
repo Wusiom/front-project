@@ -1,6 +1,6 @@
 import { watch } from 'vue'
 import useAppStore from '@/store/app'
-import { THEME_LIGHT, THEME_DARK } from '@/constants'
+import { THEME_LIGHT, THEME_DARK, THEME_SYSTEM } from '@/constants'
 
 // 监听系统主题变化
 /**
