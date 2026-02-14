@@ -43,3 +43,8 @@ export const LOGIN_TYPE_QQ = 'QQ'
 export const LOGIN_TYPE_WX = 'WX'
 
 export const FEEDBACK_URL = 'https://txc.qq.com/products/799006'
+
+// 微博APP Key
+export const WEI_BO_APP_KEY = '3454329089'
+// 微博用户的 UID
+export const WEI_BO_UID = '5984245953'

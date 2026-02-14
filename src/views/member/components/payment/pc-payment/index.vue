@@ -27,6 +27,16 @@
 
 <script setup>
 import DiscountsVue from '../discounts.vue'
+import { alipay } from '@/utils/pay'
+const props = defineProps({
+  payData: {
+    type: Object,
+    required: true
+  }
+})
+const onAliPayClick = () => {
+  alipay(props.payData.title, props.payData.desc)
+}
 </script>
 
 <style lang="scss" scoped></style>

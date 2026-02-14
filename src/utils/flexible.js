@@ -5,7 +5,12 @@ import { useWindowSize } from '@vueuse/core'
 const { width } = useWindowSize()
 // 判断当前是否为移动设备
 export const isMobileTerminal = computed(() => {
-  return width.value < PC_DEVICE_WIDTH
+  // 方式1：
+  console.log(navigator.userAgent, 'navigator.userAgent');
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+  // return width.value < PC_DEVICE_WIDTH
 })
 
 // 初始化rem基准值，最大为 40px

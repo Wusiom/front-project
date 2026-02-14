@@ -19,7 +19,9 @@
       <div
         class="hidden opacity-0 w-full h-full bg-zinc-900/50 absolute top-0 left-0 rounded duration-300 group-hover:opacity-100 xl:block"
       >
-        <m-button class="absolute top-1.5 left-1.5">分享</m-button>
+        <m-button @click="onShareClick" class="absolute top-1.5 left-1.5"
+          >分享</m-button
+        >
         <m-button
           class="absolute top-1.5 right-1.5"
           type="info"
@@ -112,6 +114,13 @@ const onToPinsClick = () => {
     id: props.data.id,
     localtion: imgContainerCenter.value
   })
+}
+
+const onShareClick = () => {
+  weiboShare(
+    props.data.photo,
+    `https://imooc-front.lgdsunday.club/pins/${props.data.id}`
+  )
 }
 </script>
 

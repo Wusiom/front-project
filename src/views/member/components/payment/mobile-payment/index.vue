@@ -30,12 +30,12 @@ import { ref } from 'vue'
 import discountsVue from '../discounts.vue'
 import mobilePaySelectVue from './mobile-pay-select.vue'
 
-// defineProps({
-//   payData: {
-//     required: true,
-//     type: Object
-//   }
-// })
+defineProps({
+  payData: {
+    required: true,
+    type: Object
+  }
+})
 
 const isOpenPopup = ref(false)
 const onConfirmClick = () => {

@@ -2,7 +2,7 @@ import router from '@/router'
 import useSession from '@/store/session'
 import { message } from '@/libs'
 router.beforeEach((to, from, next) => {
-  console.log(to.meta.user);
+  console.log(to, to.meta.user);
   if (!to.meta.user) {
     next()
     return
