@@ -8,7 +8,7 @@
     <transition name="slide">
       <div
         ref="contentTarget"
-        v-show="isVisible"
+        v-show="isVisible && hasDefaultSlot()"
         class="absolute p-1 z-20 bg-white border rounded-md dark:bg-zinc-800 dark:border-zinc-700"
         :style="contentStyle"
       >
@@ -32,8 +32,13 @@ const placementEnum = [
 ]
 </script>
 <script setup>
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, ref, watch, useSlots } from 'vue'
 import { useElementSize } from '@vueuse/core'
+
+const slots = useSlots()
+// Vue 3 中 default 是函数，需要调用后取 length
+const hasDefaultSlot = () => !!slots.default?.()?.length
+
 const props = defineProps({
   placement: {
     type: String,
@@ -79,7 +84,6 @@ watch(isVisible, (newVal) => {
     return
   }
   nextTick(() => {
-    console.log(useElementSize(referenceTarget.value).width.value, 123)
     switch (props.placement) {
       case PROP_TOP_LEFT:
         contentStyle.value.top = 0

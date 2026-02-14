@@ -10,6 +10,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import useTheme from './utils/theme'
 import directives from './directives'
+import './permission'
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 useRem()

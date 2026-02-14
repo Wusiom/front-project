@@ -67,13 +67,16 @@ onBeforeUpdate(() => {
 })
 const ulTarget = ref(null)
 const { x: ulScrollleft } = useScroll(ulTarget)
-watch(sessionStore.currentCategoryIndex, (newVal) => {
-  const { left, width } = itemRefs[newVal].getBoundingClientRect()
-  sliderStyle.value.width = `${width}px`
-  sliderStyle.value.transform = `translateX(${
-    left + ulScrollleft.value - 10
-  }px)`
-})
+watch(
+  () => sessionStore.currentCategoryIndex,
+  (newVal) => {
+    const { left, width } = itemRefs[newVal].getBoundingClientRect()
+    sliderStyle.value.width = `${width}px`
+    sliderStyle.value.transform = `translateX(${
+      left + ulScrollleft.value - 10
+    }px)`
+  }
+)
 const handleItemClick = (item) => {
   sessionStore.changeCurrentCategory(item)
   isPopupVisible.value = false

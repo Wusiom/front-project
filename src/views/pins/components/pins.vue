@@ -71,6 +71,8 @@ import { getPexelsFromId } from '@/api/pexels'
 import { ref } from 'vue'
 import { isMobileTerminal } from '@/utils/flexible'
 import { useRouter } from 'vue-router'
+import useSession from '@/store/session'
+const session = useSession()
 const props = defineProps({
   id: {
     type: String,
@@ -86,6 +88,7 @@ getPexelsData()
 
 const router = useRouter()
 const onPop = () => {
+  session.changeRouterType('back')
   router.back()
 }
 </script>

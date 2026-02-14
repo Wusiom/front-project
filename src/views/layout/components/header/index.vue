@@ -23,8 +23,11 @@ import HeaderSearch from './header-search/index.vue'
 import HeaderTheme from './header-theme.vue'
 import HeaderMy from './header-my.vue'
 import { useRouter } from 'vue-router'
+import useSession from '@/store/session'
+const session = useSession()
 const router = useRouter()
 const onToHome = () => {
+  session.changeRouterType('push')
   router.push('/')
 }
 </script>
