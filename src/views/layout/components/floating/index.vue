@@ -28,6 +28,7 @@
       <div class="w-[140px] overflow-hidden">
         <div
           class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
+          @click="onFeedbackClick"
         >
           <m-svg-icon
             name="feedback"
@@ -45,12 +46,16 @@
 import { driver } from 'driver.js'
 import 'driver.js/dist/driver.css'
 import steps from './steps'
+import { FEEDBACK_URL } from '@/constants'
 const driverObj = driver({
   steps,
   allowClose: true
 })
 const onGuideClick = () => {
   driverObj.drive()
+}
+const onFeedbackClick = () => {
+  window.open(FEEDBACK_URL, '_blank')
 }
 </script>
 
