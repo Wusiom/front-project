@@ -88,11 +88,18 @@ const loading = ref(false)
 const onConfirmClick = () => {
   loading.value = true
   // 获取裁剪后的图片
-  cropper.getCroppedCanvas().toBlob((blob) => {
-    // 裁剪后的 blob 地址
-    console.log(URL.createObjectURL(blob))
-    putObjectToOSS(blob)
-  })
+  cropper.getCroppedCanvas().toBlob(
+    (blob) => {
+      if (!blob) {
+        message('error', '图片处理失败')
+        loading.value = false
+        return
+      }
+      putObjectToOSS(blob)
+    },
+    'image/jpeg',
+    0.9
+  )
 }
 
 /**
@@ -110,6 +117,7 @@ const putObjectToOSS = (e) => {
       'error',
       '未配置 COS 密钥，请在 .env.local 中设置 VITE_COS_SECRET_ID 和 VITE_COS_SECRET_KEY'
     )
+    loading.value = false
     return
   }
   if (!ossClient) {
@@ -132,8 +140,13 @@ const putObjectToOSS = (e) => {
         Body: e
       },
       async (err, data) => {
-        err ? console.error('上传失败', err) : console.log('上传成功', data)
-        onChangeProfile(data.Location)
+        if (err) {
+          console.error('上传失败', err)
+          message('error', '头像上传失败，请重试')
+          loading.value = false
+          return
+        }
+        await onChangeProfile(data.Location)
       }
     )
   } catch (e) {
@@ -145,20 +158,22 @@ const putObjectToOSS = (e) => {
  * 上传新头像到服务器
  */
 const onChangeProfile = async (avatar) => {
-  const img = 'https://' + avatar
-  // 更新本地数据
-  session.userInfo = {
-    ...session.userInfo,
-    avatar: img
+  try {
+    const img = avatar.startsWith('http') ? avatar : 'https://' + avatar
+    // 更新本地 store，触发 profile 页面的响应式更新
+    session.userInfo = {
+      ...session.userInfo,
+      avatar: img
+    }
+    // 更新服务器数据
+    await putProfile(session.userInfo)
+    message('success', '用户头像修改成功')
+    close()
+  } catch (e) {
+    message('error', e?.message || '保存头像失败')
+  } finally {
+    loading.value = false
   }
-  // 更新服务器数据
-  await putProfile(session.userInfo)
-  // 通知用户
-  message('success', '用户头像修改成功')
-  // 关闭 loading
-  loading.value = false
-  // 关闭 dialog
-  close()
 }
 
 /**
